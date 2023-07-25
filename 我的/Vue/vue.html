@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 跳转 -->
+      <!-- <a :href="url">Google</a> -->
+      <!-- 单向 -->
+      <!-- <input type='text' v-bind:value="val"> -->
+      <!-- 双向 -->
+      {{$attrs}}
+      <input type="text" v-model:value="val" />
+    </div>
+    <script>
+      // new Vue({
+      //   el: "#app",
+      //   data: {
+      //     url: "google.com",
+      //   },
+      // });
+      // new Vue({
+      //   el: "#app",
+      //   data: {
+      //     val: "ikun",
+      //   },
+      // });
+      // var vm = new Vue({
+      // // el:"#app",
+      // data:{
+      //   val:"ikun"
+      // },
+      // });
+      // vm.$mount("#app")//可以代替el绑定 //第二种写法 */
+      // const vm = new Vue({
+      //   data: function () {
+      //     let n = 12345;
+      //     return {
+      //       val: n
+      //     }
+      //   }
+      // })
+      // vm.$mount("#app")
+      // const vm = new Vue({
+      //   el:"#app",
+      //   data:{
+      //     val:"ikun",
+      //     ikun:"坤"
+      //   }
+      // })
+      // console.log(vm);
+        // let number = 114514;
+      var person = {
+        name: "张三",
+        sex: "男",
+      };
+      // //delete person.name //删除某一属性
+
+      // //通过defineProperty给person对象添加一个age属性值为19
+      // Object.defineProperty(person, "age", {
+      //   //value: 19,
+      //  // enumerable:true,//控制属性是否可以枚举,默认值为false
+
+      //   // enumerable:true,
+      //   // writable:true//控制属性是否可以被修改,默认值为false
+
+      //  // writable:true,//控制属性是否可以被修改,默认值为false
+
+      //   // configurable:true//控制属性是否可以被删除,默认值为false
+      //   get (){
+      //     return number;
+      //   },
+      //   set(value){
+      //     number = value
+      //   }
+      //   //通过 person.age = 1145145 改变age
+      // });
+
+      // //  delete person.age //因为configurable为true所以age无法被删除
+      // // person.age = 20 //将age修改为20
+      
+      // console.log(person);
+      // console.log(Object.keys(person)); //提取对象的所有属性,变成一个数组.
+    
+      var number="19";
+    var obj= {
+        x: "张三111"
+    }
+    var obj2= {
+        y: "张三222"
+    }
+    Object.defineProperty(obj2,'x',{
+        get(){
+            return obj.x;
+        },
+        set(v){
+            obj.x=v;
+        }
+    })
+    console.log(obj);
+    console.log(obj2);
+    
+    </script>
+  </body>
+</html>
