@@ -3,19 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <title>Vue</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="./vue.js"></script>
   </head>
 
   <body>
-    <div id="app">
-      <!-- 跳转 -->
-      <!-- <a :href="url">Google</a> -->
-      <!-- 单向 -->
-      <!-- <input type='text' v-bind:value="val"> -->
-      <!-- 双向 -->
-      {{$attrs}}
-      <input type="text" v-model:value="val" />
-    </div>
+    <!-- <div id="app"> -->
+    <!-- 跳转 -->
+    <!-- <a :href="url">Google</a> -->
+    <!-- 单向 -->
+    <!-- <input type='text' v-bind:value="val"> -->
+    <!-- 双向 -->
+    <!-- {{$attrs}} -->
+    <!-- <input type="text" v-model:value="val" /> -->
+    <!-- <button @click="show">点击</button> -->
+    <!-- <a href="http://www.baidu.com" @click.stop="shownfo">百度</a> -->
+    <!-- </div> -->
+    <!-- <div class="demo1" @click="showInfo1"> -->
+    <!-- <button @click.stop="showInfo1">点我提示信息</button> -->
+    <!-- <button @click.once="showInfo1">点我提示信息</button> -->
+    <!-- 修饰符可以连续写 -->
+    <!-- <a href="http://www.atguigu.com" @click.prevent.stop="showInfo">
+      点我提示信息
+      </a>
+    </div> -->
     <script>
       // new Vue({
       //   el: "#app",
@@ -53,11 +63,11 @@
       //   }
       // })
       // console.log(vm);
-        // let number = 114514;
-      var person = {
-        name: "张三",
-        sex: "男",
-      };
+      // let number = 114514;
+      // var person = {
+      //   name: "张三",
+      //   sex: "男",
+      // };
       // //delete person.name //删除某一属性
 
       // //通过defineProperty给person对象添加一个age属性值为19
@@ -82,28 +92,98 @@
 
       // //  delete person.age //因为configurable为true所以age无法被删除
       // // person.age = 20 //将age修改为20
-      
+
       // console.log(person);
       // console.log(Object.keys(person)); //提取对象的所有属性,变成一个数组.
-    
-      var number="19";
-    var obj= {
-        x: "张三111"
-    }
-    var obj2= {
-        y: "张三222"
-    }
-    Object.defineProperty(obj2,'x',{
-        get(){
-            return obj.x;
+
+      //   var number="19";
+      // var obj= {
+      //     x: "张三111"
+      // }
+      // var obj2= {
+      //     y: "张三222"
+      // }
+      // Object.defineProperty(obj2,'x',{
+      //     get(){
+      //         return obj.x;
+      //     },
+      //     set(v){
+      //         obj.x=v;
+      //     }
+      // })
+      // console.log(obj);
+      // console.log(obj2);
+      // 点击
+      // new Vue({
+      //   el: "#app",
+      //   methods: {
+      //     show() {
+      //       alert("hello Vue");
+      //     },
+      //   },
+      // });
+    </script>
+    <!-- <button onclick="fun3(this)">33333</button>
+    <div id="app">
+      {{$options}}
+      <input type="text"v-bind:value="val">
+      <button @click="fun2(this,1,2,3)">点击</button>
+    </div>
+    <script>
+      function fub3(obj){
+        console.log(obj);
+      }
+      const vm = new Vue({
+        el:"#app",
+        data:{
+          val:"kun",
+          ikun:"蔡徐坤"
         },
-        set(v){
-            obj.x=v;
+        methods:{
+          fun2(n1,n2,n3){
+            console.log(n1,n2,n3);
+          }
         }
-    })
-    console.log(obj);
-    console.log(obj2);
+      }) 
+      console.log(vm);
+    </script> -->
+    <!-- <div id="app">
+  <a href="http://www.baidu.com"@click.prevent="show">百度</a>
+</div>
     
+   <script>
+    const vm = new Vue({
+      el:"#app",
+      data:{},
+      methods:{
+        show(){
+        // event.preventDefault()
+      }
+      }
+    })
+   </script> -->
+
+    <div
+      id="demo1"
+      @click="showInfo1"
+      style="width: 200px; height: 200px; background-color: rgb(233, 255, 152)"
+    >
+      <button @click.once="showInfo1">点我提示信息</button>
+      <!-- 修饰符可以连续写 -->
+      <a href="http://www.atguigu.com" @click.prevent.stop="showInfo">
+        点我提示信息
+      </a>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#demo1",
+        data: {},
+        methods: {
+          show() {
+            // event.preventDefault()
+          },
+        },
+      });
     </script>
   </body>
 </html>

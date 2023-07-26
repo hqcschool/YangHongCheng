@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <table border="1" width="600">
+            <tr bgcolor="lightblue">
+              <th>id</th>
+              <th>姓名</th>
+              <th>年龄</th>
+              <th>操作</th>
+            </tr>
+            <tr v-for="(item,index) in fillist">
+              <td>{{index+1}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.author}}</td>
+              <td>
+                <a href="javascript:void(0);" @click="deleteItem(item)">删除</a>|
+                <a href="javascript:void(0);" @click="editItem(item,index)">编辑</a>
+              </td>
+            </tr>
+          </table>
+    </div>
+</body>
+</html>
