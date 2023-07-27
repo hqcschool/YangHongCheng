@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件练习</title>
+</head>
+<script src="./我的/Vue/vue.js"></script>
+<body>
+    <div id="app">
+        <input type="text" id="kuang" @keydown.13="fun()">
+    </div>
+    <script>
+        // 获得按键
+        // document.getElementById("kuang").addEventListener("keydown",function(){
+        //     console.log(event);
+        // })
+        new Vue({
+            el:"#app",
+            methods:{
+                fun(){
+                    console.log(event);
+                    console.log(111111);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

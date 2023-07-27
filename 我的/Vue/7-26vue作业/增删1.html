@@ -1,29 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>增删</title>
 </head>
+
 <body>
-    <div id="box">
+    <div id="app">
+        <input type="text" placeholder="姓名" v-model="newItem.title" />
+        <input type="text" placeholder="年龄" v-model="newItem.author" />
+        <button @click="addItem">保存</button>
+        <input type="text" placeholder="查询" v-model="cha" />
+        <button @click="sousuo">搜索</button>
         <table border="1" width="600">
-            <tr bgcolor="lightblue">
-              <th>id</th>
-              <th>姓名</th>
-              <th>年龄</th>
-              <th>操作</th>
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>操作</th>
             </tr>
             <tr v-for="(item,index) in fillist">
-              <td>{{index+1}}</td>
-              <td>{{item.title}}</td>
-              <td>{{item.author}}</td>
-              <td>
-                <a href="javascript:void(0);" @click="deleteItem(item)">删除</a>|
-                <a href="javascript:void(0);" @click="editItem(item,index)">编辑</a>
-              </td>
+                <!-- +1从1开始 -->
+                <td>{{index+1}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.author}}</td>
+                <td>
+                    <a href="javascript:void(0);" @click="deleteItem(item)">删除</a>|
+                    <a href="javascript:void(0);" @click="">编辑</a>
+                </td>
             </tr>
-          </table>
+        </table>
     </div>
+    <script src="../vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                keywords: "",
+                isshow: false,
+                editIndex: null,
+                newItem: {
+                    title: "",
+                    author: "",
+                },
+                list: [
+                    {
+                        title: "123",
+                        author: "mdy",
+                    },
+                    {
+                        title: "456",
+                        author: "dyh",
+                    },
+                    {
+                        title: "789",
+                        author: "dyhd",
+                    },
+                ],
+            },
+            methods: {
+                //添加
+                addItem() {
+                    // 向list新增item
+                    this.list.unshift({
+                        ...this.newItem,
+                    });
+                    //删除
+                    this.newItem = {
+                        title: "",
+                        author: "",
+                    };
+                },
+                //删除
+                deleteItem(obj) {
+                    var index = this.list.indexOf(obj);
+                    if (confirm("确认删除吗?")) {
+                        this.list.splice(index, 1);
+                    }
+                },
+            },
+            computed: {
+                //过滤出的list
+                fillist() {
+                    if (this.keywords.trim() == "") {
+                        return this.list;
+                    } else {
+                        return this.list.filter((item) => {
+                            return item.title.includes(this.keywords);
+                        });
+                    }
+                },
+            },
+        });
+    </script>
 </body>
+
 </html>
