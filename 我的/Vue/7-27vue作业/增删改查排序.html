@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7-27</title>
+    <style>
+      td {
+        text-align: center;
+      }
+      .commns {
+        background-color: yellow;
+      }
+      .commn {
+        background-color: pink;
+      }
+      .commn:hover {
+        background-color: rgb(255, 77, 0);
+      }
+      .commns:hover {
+        background-color: rgb(255, 77, 0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <input placeholder="姓名" type="text" v-model="newItem.xingming" />
+      <select v-model="newItem.xinbie">
+        <option value="请选择性别">请选择性别</option>
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
+      <input value="100" type="text" v-model="newItem.nianlin" />
+      <input type="button" value="提交" @click="addItem" />
+      <hr />
+      <select v-model="field">
+        <option value="请选择一个排序字段">请选择一个排序字段</option>
+        <option :value="1">编号</option>
+        <option :value="2">年龄</option>
+      </select>
+      <select v-model="sort_list">
+        <option value="请选择一个排序方式">请选择一个排序方式</option>
+        <option :value="1">升序</option>
+        <option :value="2">降序</option>
+      </select>
+      <input type="button" @click="sorts" value="排序" />
+      <table border="1" width="100%">
+        <tr>
+          <th>
+            全选<input
+              type="checkbox"
+              v-model="selectAll"
+              @change="toggleAllItems"
+            />
+          </th>
+          <th>编号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th>操作</th>
+        </tr>
+        <tr
+          v-for="(item,index) in items"
+          :key="item.id"
+          :class="{commns:index%2===0,commn:index%2!==0}"
+        >
+          <td>
+            <input type="checkbox" v-model="selectAll" />
+          </td>
+          <td>{{item.id}}</td>
+          <td>{{item.xingming}}</td>
+          <td>{{item.xinbie}}</td>
+          <td>{{item.nianlin}}</td>
+          <td>
+            <button @click="up(index)">上移</button>
+            <button @click="donw(index)">下移</button>
+            <button @click="del(index)">删除</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          keywords: "",
+          isshow: false,
+          xinbie: null,
+          selectAll: false,
+          field: "",
+          sort_list: "",
+          newItem: {
+            //新增的对象
+            xingming: "",
+            xinbie: "请选择性别",
+            nianlin: "100",
+          },
+          list: [
+            {
+              id: "1",
+              xingming: "张三",
+              xinbie: "男",
+              nianlin: "18",
+            },
+            {
+              id: "2",
+              xingming: "李四",
+              xinbie: "男",
+              nianlin: "30",
+            },
+            {
+              id: "3",
+              xingming: "王五",
+              xinbie: "男",
+              nianlin: "20",
+            },
+          ],
+        },
+        methods: {
+          // 添加
+          addItem() {
+            this.list.unshift({
+              ...this.newItem,
+            });
+            this.newItem = {
+              xingming: "",
+              author: "",
+              nianlin: "",
+            };
+          },
+          // 上下移
+          up(index) {
+            if (index == 0) {
+            } else {
+              let arr = this.list;
+              arr.splice(index - 1, 1, ...arr.splice(index, 1, arr[index - 1]));
+            }
+          },
+          donw(index) {
+            let arr = this.list;
+            arr.splice(index, 1, ...arr.splice(index + 1, 1, arr[index]));
+          },
+          //   排序
+          sorts() {
+            if (this.field == 1) {
+              this.sort_list == 1
+                ? this.items.sort((a, b) => b.id - a.id)
+                : this.items.sort((a, b) => a.id - b.id);
+            } else if (this.field == 2) {
+              this.sort_list == 1
+                ? this.items.sort((a, b) => b.nianlin - a.nianlin)
+                : this.items.sort((a, b) => a.nianlin - b.nianlin);
+            }
+            console.log(this.field);
+          },
+
+          //   全选
+          toggleAllItems() {
+            this.items.forEach((item) => {
+              item.selected = this.selectAll;
+            });
+          },
+          //   删除
+          del(index) {
+            this.items.splice(index, 1);
+          },
+        },
+        computed: {
+          //过滤出的list
+          items() {
+            if (this.keywords.trim() == "") {
+              return this.list;
+            } else {
+              return this.list.filter((item) => {
+                return item.title.includes(this.keywords);
+              });
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
