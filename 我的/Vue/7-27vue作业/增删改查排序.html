@@ -179,6 +179,9 @@
                         });
                     }
                 },
+                sum() {
+                    return this.numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                }
             },
         });
     </script>

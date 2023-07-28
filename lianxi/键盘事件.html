@@ -1,30 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>键盘事件练习</title>
+  <title>Vue点击图片添加数据并输出数组</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
-<script src="./我的/Vue/vue.js"></script>
 <body>
-    <div id="app">
-        <input type="text" id="kuang" @keydown.niahao="fun()">
-    </div>
-    <script>
-        // 获得按键
-        // document.getElementById("kuang").addEventListener("keydown",function(){
-        //     console.log(event);
-        // })
-        Vue.config.keyCodes.niahao = 65;
-        new Vue({
-            el:"#app",
-            methods:{
-                fun(){
-                    console.log(event);
-                    console.log(111111);
-                }
-            }
-        })
-    </script>
+  <div id="app">
+    <h1>商品列表</h1>
+    <ul>
+      <li v-for="item in products" :key="item.id">
+        <img :src="item.image"  @click="addToCart(item)" />
+        <!-- <p>{{ item.description }}</p> -->
+      </li>
+    </ul>
+    
+    <h2>购物车</h2>
+    <ul>
+      <li v-for="item in cart" :key="item.id">
+        <input type="checkbox" v-model="item.selected" />
+        <img :src="item.image" :alt="item.name" />
+        <p>{{ item.description }}</p>
+        
+      </li>
+    </ul>
+  </div>
+  <script>
+new Vue({
+  el: '#app',
+  data() {
+  return {
+    products: [
+      {
+        id: 1,
+        name: '商品1',
+        price: 10,
+        image: 'path/to/image1.jpg',
+        description: '商品1的简介',
+        selected: false
+      },
+      {
+        id: 2,
+        name: '商品2',
+        price: 20,
+        image: 'path/to/image2.jpg',
+        description: '商品2的简介',
+        selected: false
+      },
+      // 其他商品...
+    ],
+    cart: []
+  };
+},
+methods: {
+  addToCart(item) {
+    const cartItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      description: item.description,
+      selected: true
+    };
+    this.cart.push(cartItem);
+  }
+}
+});
+  </script>
 </body>
 </html>
