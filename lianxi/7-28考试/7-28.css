@@ -188,8 +188,13 @@
   }
   .tianjia{
     width: 1160px;
-    /* height: 500px; */
+    height: 300px;
     float: left;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style:none;
+    overflow-x:hidden;
+    overflow-y:auto;
     border:1px gray solid ;
   }
   .jiesuan{
@@ -295,7 +300,7 @@ select{
     width: 150px;
     height: 100px;
     text-align: center;
-    margin-left: 135px;
+    margin-left: 125px;
     line-height: 100px;
     /* background-color: aqua; */
 }

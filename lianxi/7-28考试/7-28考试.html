@@ -47,7 +47,7 @@
       <div class="peiso">
         <div class="six">
           <p class="pes">
-            配送至 <b>广州市 </b><span class="shang">| 勾选商品即可锁定库存20分钟，倒计时内不用担心商品被抢走</span>
+            配送至 <b>广州市 </b><span class="shang">| 勾选商品 <input type="checkbox"> 即可锁定库存20分钟，倒计时内不用担心商品被抢走</span>
           </p>
         </div>
       </div>
@@ -62,10 +62,10 @@
       </div>
       <div class="tianjia">
         <li class="gao" v-for="(item,index) in cart" :key="item.id">
-          <input type="checkbox" v-model="item.selected" class="check">
-          <img :src="item.imageURL" :alt="item.name" style="width: 100px; height: 100px;float: left;">
+          <input type="checkbox" v-model="item.selected" class="check" />
+          <img :src="item.imageURL" :alt="item.name" style="width: 100px; height: 100px; float: left" />
           <div class="seis">{{ item.jiash }}</div>
-          <div class="jiaq"><b>{{item.yuanjia}}</b></div>
+          <div class="jiaq"><b>{{item.manin}}</b></div>
           <div class="tu"><b>2</b></div>
           <button class="shanc" @click="del(index)">删除</button>
         </li>
@@ -184,18 +184,13 @@
             zheko: "2.3折",
             jiash: "改良汉服连衣裙女2023夏新品收腰显瘦v领复古印花裙子半雪",
           },
-
         ],
-        cart: []
+        cart: [],
       },
 
-      // 倒计时
+
       methods: {
-        // startCountdown() {
-        //   this.countdownInterval = setInterval(() => {
-        //     this.updateCountdown();
-        //   }, 1000);
-        // },
+        // 倒计时20
         updateCountdown() {
           if (this.countdownTime > 0) {
             this.minutes = Math.floor(this.countdownTime / 60);
@@ -227,15 +222,16 @@
             jiash: item.jiash,
             price: item.price,
             imageURL: item.imageURL,
-            yuanjia: item.yuanjia,
+            manin: item.manin,
             selected: true,
-
           };
+          //点击添加 倒计时
           this.countdownInterval = setInterval(() => {
             this.updateCountdown();
-          }, 1000);
+          }, 100);
           this.cart.push(cartItem);
         },
+        // 删除
         del(index) {
           this.cart.splice(index, 1);
         },
