@@ -1,246 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./7-28.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="./7-28.css" />
-</head>
-
-<body>
-  <div id="app">
-    <div id="bix">
-      <!-- 商品 -->
-      <div class="sping" v-for="(item, index) in items" :key="index">
-        <!-- 图片 -->
-        <div class="img">
-          <img :src="item.imageURL" class="imgs" @click="addToCart(item)" />
+  <body>
+    <div id="app">
+      <div id="bix">
+        <!-- 商品 -->
+        <div class="sping" v-for="(item, index) in items" :key="index">
+          <!-- 图片 -->
+          <div class="img">
+            <img :src="item.imageURL" class="imgs" @click="addToCart(item)" />
+          </div>
+          <!-- 简介/价格 -->
+          <div class="jiajie">
+            <!-- 价格外包盒子 -->
+            <div class="bux">
+              <!-- 标签 -->
+              <div class="span">{{item.spam}}</div>
+              <!-- 价格/折扣 -->
+              <div class="zhe">
+                <!-- 价格 -->
+                <div class="manin"><b>{{item.manin}}</b></div>
+                <!-- 原价 -->
+                <div class="yuanjia"><s>{{item.yuanjia}}</s></div>
+                <!-- 折扣 -->
+                <div class="zheko">{{item.zheko}}</div>
+              </div>
+            </div>
+            <!-- 简介 -->
+            <div class="jiash">{{item.jiash}}</div>
+          </div>
         </div>
-        <!-- 简介/价格 -->
-        <div class="jiajie">
-          <!-- 价格外包盒子 -->
-          <div class="bux">
-            <!-- 标签 -->
-            <div class="span">{{item.spam}}</div>
-            <!-- 价格/折扣 -->
-            <div class="zhe">
-              <!-- 价格 -->
-              <div class="manin"><b>{{item.manin}}</b></div>
-              <!-- 原价 -->
-              <div class="yuanjia"><s>{{item.yuanjia}}</s></div>
-              <!-- 折扣 -->
-              <div class="zheko">{{item.zheko}}</div>
+      </div>
+      <div class="gongneng">
+        <div class="time">
+          <div class="dinshi">
+            <b>特卖商品 {{ minutes }}:{{ seconds }}</b>
+          </div>
+        </div>
+        <div class="peiso">
+          <div class="six">
+            <p class="pes">
+              配送至 <b>广州市 </b
+              ><span class="shang"
+                >| 勾选商品
+                <input type="checkbox" />
+                即可锁定库存20分钟，倒计时内不用担心商品被抢走</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="shanpin">
+          <p class="sp">商品</p>
+          <p class="dj">单价</p>
+          <p class="sl">数量</p>
+          <p class="cz">操作</p>
+        </div>
+        <div class="ziyin">
+          <p>唯品自营</p>
+        </div>
+        <div class="tianjia">
+          <li class="gao" v-for="(item,index) in cart" :key="item.id">
+            <input type="checkbox" v-model="item.selected" class="check" />
+            <img
+              :src="item.imageURL"
+              :alt="item.name"
+              style="width: 100px; height: 100px; float: left"
+            />
+            <div class="seis">{{ item.jiash }}</div>
+            <div class="jiaq"><b>{{item.manin}}</b></div>
+            <div class="tu"><b>2</b></div>
+            <button class="shanc" @click="del(index)">删除</button>
+          </li>
+        </div>
+
+        <div class="jiesuan">
+          <div class="rite">
+            <div class="xziangxi">
+              <p class="spje">共计 &nbsp 件商品 商品金额</p>
+              <p class="zje">总金额（未含运费）</p>
             </div>
           </div>
-          <!-- 简介 -->
-          <div class="jiash">{{item.jiash}}</div>
+          <select class="youhui">
+            <option value="使用优惠券">使用优惠券</option>
+            <option value="50">50元</option>
+            <option value="100">100元</option>
+          </select>
+          <div class="ljjs">
+            <div class="daojis">
+              <p>请在倒计时结束前结算 <img src="./问号.png" class="wen" /></p>
+            </div>
+            <button class="jis" onclick="jiesuan()">立即结算</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="gongneng">
-      <div class="time">
-        <div class="dinshi">
-          <b>特卖商品 {{ minutes }}:{{ seconds }}</b>
-        </div>
-      </div>
-      <div class="peiso">
-        <div class="six">
-          <p class="pes">
-            配送至 <b>广州市 </b><span class="shang">| 勾选商品 <input type="checkbox"> 即可锁定库存20分钟，倒计时内不用担心商品被抢走</span>
-          </p>
-        </div>
-      </div>
-      <div class="shanpin">
-        <p class="sp">商品</p>
-        <p class="dj">单价</p>
-        <p class="sl">数量</p>
-        <p class="cz">操作</p>
-      </div>
-      <div class="ziyin">
-        <p>唯品自营</p>
-      </div>
-      <div class="tianjia">
-        <li class="gao" v-for="(item,index) in cart" :key="item.id">
-          <input type="checkbox" v-model="item.selected" class="check" />
-          <img :src="item.imageURL" :alt="item.name" style="width: 100px; height: 100px; float: left" />
-          <div class="seis">{{ item.jiash }}</div>
-          <div class="jiaq"><b>{{item.manin}}</b></div>
-          <div class="tu"><b>2</b></div>
-          <button class="shanc" @click="del(index)">删除</button>
-        </li>
-      </div>
+    <script src="../../我的/Vue/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          countdownTime: 20 * 60,
+          minutes: 0,
+          seconds: 0,
+          countdownInterval: null,
+          dataArray: [],
+          items: [
+            {
+              imageURL: "./裙1.jpg",
+              spam: "特卖价",
+              manin: "￥198",
+              yuanjia: "￥689",
+              zheko: "2.9折",
+              id: "2",
+              jiash: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透...",
+            },
+            {
+              imageURL: "./裙2.jpg",
+              spam: "特卖价",
+              manin: "￥196",
+              yuanjia: "￥896",
+              zheko: "2.2折",
+              jiash: "改良汉服连衣裙女2023新款夏装复古国风渐变色印花裙子 ...",
+            },
+            {
+              imageURL: "./裙3.jpg",
+              spam: "特卖价",
+              manin: "￥189",
+              yuanjia: "￥689",
+              zheko: "2.7折",
+              jiash: "【新中式改良汉服旗袍连衣裙女】 宽松气质立领国风盘扣...",
+            },
+            {
+              imageURL: "./裙3.png",
+              spam: "特卖价",
+              manin: "￥314",
+              yuanjia: "￥889",
+              zheko: "2.9折",
+              jiash: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两...",
+            },
+            {
+              imageURL: "./裙4.jpg",
+              spam: "特卖价",
+              manin: "￥250",
+              yuanjia: "￥989",
+              zheko: "2.3折",
+              jiash: "改良汉服连衣裙女2023夏新品收腰显瘦v领复古印花裙子半雪",
+            },
+            {
+              imageURL: "./裙1.jpg",
+              spam: "特卖价",
+              manin: "￥198",
+              yuanjia: "￥689",
+              zheko: "2.9折",
+              jiash: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透...",
+            },
+            {
+              imageURL: "./裙2.jpg",
+              spam: "特卖价",
+              manin: "￥196",
+              yuanjia: "￥896",
+              zheko: "2.2折",
+              jiash: "改良汉服连衣裙女2023新款夏装复古国风渐变色印花裙子 ...",
+            },
+            {
+              imageURL: "./裙3.jpg",
+              spam: "特卖价",
+              manin: "￥189",
+              yuanjia: "￥689",
+              zheko: "2.7折",
+              jiash: "【新中式改良汉服旗袍连衣裙女】 宽松气质立领国风盘扣...",
+            },
+            {
+              imageURL: "./裙3.png",
+              spam: "特卖价",
+              manin: "￥314",
+              yuanjia: "￥889",
+              zheko: "2.9折",
+              jiash: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两...",
+            },
+            {
+              imageURL: "./裙4.jpg",
+              spam: "特卖价",
+              manin: "￥250",
+              yuanjia: "￥989",
+              zheko: "2.3折",
+              jiash: "改良汉服连衣裙女2023夏新品收腰显瘦v领复古印花裙子半雪",
+            },
+          ],
+          cart: [],
+        },
 
-      <div class="jiesuan">
-        <div class="rite">
-          <div class="xziangxi">
-            <p class="spje">共计 &nbsp 件商品 商品金额</p>
-            <p class="zje">总金额（未含运费）</p>
-          </div>
-        </div>
-        <select class="youhui">
-          <option value="使用优惠券">使用优惠券</option>
-          <option value="50">50元</option>
-          <option value="100">100元</option>
-        </select>
-        <div class="ljjs">
-          <div class="daojis">
-            <p>请在倒计时结束前结算 <img src="./问号.png" class="wen" /></p>
-          </div>
-          <button class="jis">立即结算</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="../../我的/Vue/vue.js"></script>
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        countdownTime: 20 * 60,
-        minutes: 0,
-        seconds: 0,
-        countdownInterval: null,
-        dataArray: [],
-        items: [
-          {
-            imageURL: "./裙1.jpg",
-            spam: "特卖价",
-            manin: "￥198",
-            yuanjia: "￥689",
-            zheko: "2.9折",
-            id: "2",
-            jiash: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透...",
+        methods: {
+          // 倒计时20
+          updateCountdown() {
+            if (this.countdownTime > 0) {
+              this.minutes = Math.floor(this.countdownTime / 60);
+              this.seconds = this.countdownTime % 60;
+              this.countdownTime--;
+            } else {
+              clearInterval(this.countdownInterval);
+            }
           },
-          {
-            imageURL: "./裙2.jpg",
-            spam: "特卖价",
-            manin: "￥196",
-            yuanjia: "￥896",
-            zheko: "2.2折",
-            jiash: "改良汉服连衣裙女2023新款夏装复古国风渐变色印花裙子 ...",
+          addImageData() {
+            // 获取图片数据并添加到数组中
+            const imageData = this.getImageData();
+            if (imageData) {
+              this.dataArray.push(imageData);
+              console.log("Data added to array:", imageData);
+            }
           },
-          {
-            imageURL: "./裙3.jpg",
-            spam: "特卖价",
-            manin: "￥189",
-            yuanjia: "￥689",
-            zheko: "2.7折",
-            jiash: "【新中式改良汉服旗袍连衣裙女】 宽松气质立领国风盘扣...",
-          },
-          {
-            imageURL: "./裙3.png",
-            spam: "特卖价",
-            manin: "￥314",
-            yuanjia: "￥889",
-            zheko: "2.9折",
-            jiash: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两...",
-          },
-          {
-            imageURL: "./裙4.jpg",
-            spam: "特卖价",
-            manin: "￥250",
-            yuanjia: "￥989",
-            zheko: "2.3折",
-            jiash: "改良汉服连衣裙女2023夏新品收腰显瘦v领复古印花裙子半雪",
-          },
-          {
-            imageURL: "./裙1.jpg",
-            spam: "特卖价",
-            manin: "￥198",
-            yuanjia: "￥689",
-            zheko: "2.9折",
-            jiash: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透...",
-          },
-          {
-            imageURL: "./裙2.jpg",
-            spam: "特卖价",
-            manin: "￥196",
-            yuanjia: "￥896",
-            zheko: "2.2折",
-            jiash: "改良汉服连衣裙女2023新款夏装复古国风渐变色印花裙子 ...",
-          },
-          {
-            imageURL: "./裙3.jpg",
-            spam: "特卖价",
-            manin: "￥189",
-            yuanjia: "￥689",
-            zheko: "2.7折",
-            jiash: "【新中式改良汉服旗袍连衣裙女】 宽松气质立领国风盘扣...",
-          },
-          {
-            imageURL: "./裙3.png",
-            spam: "特卖价",
-            manin: "￥314",
-            yuanjia: "￥889",
-            zheko: "2.9折",
-            jiash: "2023夏季新款新中式绣花改良唐装上衣女民国风半身裙两...",
-          },
-          {
-            imageURL: "./裙4.jpg",
-            spam: "特卖价",
-            manin: "￥250",
-            yuanjia: "￥989",
-            zheko: "2.3折",
-            jiash: "改良汉服连衣裙女2023夏新品收腰显瘦v领复古印花裙子半雪",
-          },
-        ],
-        cart: [],
-      },
+          getImageData() {
+            const data = [];
 
-
-      methods: {
-        // 倒计时20
-        updateCountdown() {
-          if (this.countdownTime > 0) {
-            this.minutes = Math.floor(this.countdownTime / 60);
-            this.seconds = this.countdownTime % 60;
-            this.countdownTime--;
-          } else {
-            clearInterval(this.countdownInterval);
-          }
+            return data;
+          },
+          outputArray() {
+            console.log("Output array:", this.dataArray);
+          },
+          // 商品
+          addToCart(item) {
+            const cartItem = {
+              jiash: item.jiash,
+              price: item.price,
+              imageURL: item.imageURL,
+              manin: item.manin,
+              selected: true,
+            };
+            //点击添加 倒计时
+            this.countdownInterval = setInterval(() => {
+              this.updateCountdown();
+            }, 100);
+            this.cart.push(cartItem);
+          },
+          // 删除
+          del(index) {
+            this.cart.splice(index, 1);
+          },
         },
-        addImageData() {
-          // 获取图片数据并添加到数组中
-          const imageData = this.getImageData();
-          if (imageData) {
-            this.dataArray.push(imageData);
-            console.log("Data added to array:", imageData);
-          }
+        mounted() {
+          this.startCountdown();
         },
-        getImageData() {
-          const data = [];
-
-          return data;
-        },
-        outputArray() {
-          console.log("Output array:", this.dataArray);
-        },
-        // 商品
-        addToCart(item) {
-          const cartItem = {
-            jiash: item.jiash,
-            price: item.price,
-            imageURL: item.imageURL,
-            manin: item.manin,
-            selected: true,
-          };
-          //点击添加 倒计时
-          this.countdownInterval = setInterval(() => {
-            this.updateCountdown();
-          }, 100);
-          this.cart.push(cartItem);
-        },
-        // 删除
-        del(index) {
-          this.cart.splice(index, 1);
-        },
-      },
-      mounted() {
-        this.startCountdown();
-      },
-    });
-  </script>
-</body>
-
+      });
+    </script>
+    <script>
+      function jiesuan() {
+        alert("点击付款");
+      }
+    </script>
+  </body>
 </html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vue.js"></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      width: 100%;
+      height: 500px;
+      /* background-color: rgb(191, 191, 191); */
+      float: left;
+    }
+
+    #app h1 {
+      text-align: center;
+      font-size: 100px;
+      color: #ead7d7;
+      margin-top: 10px;
+    }
+
+    .bix {
+      width: 700px;
+      height: 80px;
+      background-color: rgb(255, 255, 255);
+      margin: auto;
+      box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .shuru {
+      width: 500px;
+      height: 80px;
+      float: left;
+      font-size: 30px;
+      background-color: #fafafa;
+      border: none;
+      outline: none;
+    }
+
+    .shuru::placeholder {
+      color: #d5d3d3;
+    }
+
+    .xia {
+      width: 80px;
+      height: 80px;
+      float: left;
+      margin-left: 20px;
+    }
+
+    .xia p {
+      color: #d5d3d3;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 20px;
+      /* display: none; */
+    }
+
+    .buw {
+      width: 700px;
+      height: 100px;
+      margin: auto;
+      margin-top: 2px;
+      background-color: #ead7d7;
+      box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .bnx {
+      width: 700px;
+      height: 70px;
+      float: left;
+      /* background-color: aqua; */
+    }
+
+    .fuxuan {
+      width: 70px;
+      height: 70px;
+      float: left;
+      /* background-color: #ff1818; */
+    }
+
+    .check {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #b5b5b5;
+      outline: none;
+      margin: 19px;
+      float: left;
+    }
+    .check:checked {
+      background-color: #f1fd46;
+      border-color: #333;
+    }
+    .che:checked::before {
+      display: block;
+      text-align: center;
+      line-height: 20px;
+      color: #fff;
+    }
+    .name {
+      width: 560px;
+      height: 70px;
+      float: left;
+      border-bottom:1px black solid ;
+    }
+    .shan {
+      width: 70px;
+      height: 70px;
+      /* background-color: #ffa9a9; */
+      position: relative;
+      display: inline-block;
+    }
+    .cha {
+      float: right;
+      width: 70px;
+      height: 70px;
+      text-align: center;
+      display: none;
+      position: absolute;
+    }
+    .cha p {
+      font-size: 30px;
+      margin-top: 12px;
+    }
+    .shan:hover .cha {
+      display: block;
+    }
+  </style>
+
+  <body>
+    <div id="app">
+      <h1>todos</h1>
+      <div class="bix">
+        <div class="xia">
+          <p>∨</p>
+        </div>
+        <input
+          type="text"
+          class="shuru"
+          placeholder="What needs to be done?"
+          @keyup.huiche="showInfo"
+        />
+      </div>
+      <!-- 大添加盒 -->
+      <div class="buw">
+        <!-- 添加盒 -->
+        <div class="bnx">
+          <!-- 复选 -->
+          <div class="fuxuan">
+            <input type="checkbox" class="check" />
+          </div>
+          <!-- 添加 -->
+          <div class="name" v-for="(item,index) in items" :key="item.id">
+           {{item.name}}
+          </div>
+          <!-- 删除 -->
+          <div class="shan">
+            <div class="cha"><p>×</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      Vue.config.keyCodes.huiche = 13;
+      var vm = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        methods: {
+          showInfo(event) {
+            console.log(event.target.value);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

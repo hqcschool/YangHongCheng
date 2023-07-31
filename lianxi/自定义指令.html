@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../我的/Vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-sy="s" v-model="s">
+        <p v-max="s">{{s}}</p>
+    </div>
+    <script>
+     let vm =  new Vue({
+            el:"#app",
+            data:{
+                s:"mm",
+            },
+            directives:{
+                // sy:{
+                //     bind:function(el,bi){
+                //         console.log("@",el);
+                //         console.log("@",bi);
+                //     },
+                //     inserted(element,bi){
+                //         console.log(element);
+                //         element.focus()
+                //     },
+                //     // 数据更新触发
+                //     update(element,bi){
+                //         console.log("更新了");
+                //         element.value = bi.value
+                //     },
+                  
+                // }
+               "max":function(el,bin){
+                el.innerHTML=bin.value*10
+                }
+            }
+        })
+    </script>
+</body>
+</html>

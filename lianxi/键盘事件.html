@@ -1,71 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Vue点击图片添加数据并输出数组</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+<script type="text/javascript" src="../我的/Vue/vue.js"></script>
 <body>
-  <div id="app">
-    <h1>商品列表</h1>
-    <ul>
-      <li v-for="item in products" :key="item.id">
-        <img :src="item.image"  @click="addToCart(item)" />
-        <!-- <p>{{ item.description }}</p> -->
-      </li>
-    </ul>
-    
-    <h2>购物车</h2>
-    <ul>
-      <li v-for="item in cart" :key="item.id">
-        <input type="checkbox" v-model="item.selected" />
-        <img :src="item.image" :alt="item.name" />
-        <p>{{ item.description }}</p>
-        
-      </li>
-    </ul>
+  <div class="box">
+    合资
+    <div class="additional-box">
+      鼠标悬停时显示的内容
+    </div>
   </div>
-  <script>
-new Vue({
-  el: '#app',
-  data() {
-  return {
-    products: [
-      {
-        id: 1,
-        name: '商品1',
-        price: 10,
-        image: 'path/to/image1.jpg',
-        description: '商品1的简介',
-        selected: false
-      },
-      {
-        id: 2,
-        name: '商品2',
-        price: 20,
-        image: 'path/to/image2.jpg',
-        description: '商品2的简介',
-        selected: false
-      },
-      // 其他商品...
-    ],
-    cart: []
-  };
-},
-methods: {
-  addToCart(item) {
-    const cartItem = {
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      image: item.image,
-      description: item.description,
-      selected: true
-    };
-    this.cart.push(cartItem);
-  }
+<style>
+.box {
+  position: relative;
+  display: inline-block;
 }
-});
-  </script>
+
+.additional-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  background-color: #ccc;
+  border: 1px solid #999;
+  display: none;
+}
+
+.box:hover .additional-box {
+  display: block;
+}
+  </style>
 </body>
 </html>
