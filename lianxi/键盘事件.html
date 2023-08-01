@@ -7,31 +7,52 @@
 </head>
 <script type="text/javascript" src="../我的/Vue/vue.js"></script>
 <body>
-  <div class="box">
-    合资
-    <div class="additional-box">
-      鼠标悬停时显示的内容
+    <div id="app">
+      <h2>备忘录</h2>
+      <div class="memo-list">
+        <div v-for="memo in memos" :key="memo.id" class="memo-item">
+          <span>{{ memo.text }}</span>
+          <button @click="deleteMemo(memo.id)">删除</button>
+        </div>
+      </div>
+  
+      <div class="add-memo">
+        <input type="text" v-model="newMemoText" placeholder="请输入备忘录内容">
+        <button @click="addMemo">添加</button>
+      </div>
     </div>
-  </div>
-<style>
-.box {
-  position: relative;
-  display: inline-block;
-}
-
-.additional-box {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding: 10px;
-  background-color: #ccc;
-  border: 1px solid #999;
-  display: none;
-}
-
-.box:hover .additional-box {
-  display: block;
-}
+  
+  <script>
+  new Vue({
+    el:"#app",
+    data() {
+      return {
+        memos: [],
+        newMemoText: ""
+      };
+    },
+    methods: {
+      addMemo() {
+        if (this.newMemoText) {
+          const newMemo = {
+            id: Date.now(),
+            text: this.newMemoText
+          };
+          this.memos.push(newMemo);
+          this.newMemoText = "";
+        }
+      },
+      deleteMemo(id) {
+        this.memos = this.memos.filter(memo => memo.id !== id);
+      }
+    }
+  });
+  </script>
+  
+  <style>
+  .memo-item {
+    margin-bottom: 10px;
+  }
   </style>
 </body>
 </html>

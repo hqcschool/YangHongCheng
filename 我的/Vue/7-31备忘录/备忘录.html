@@ -12,6 +12,10 @@
       padding: 0;
     }
 
+    li {
+      list-style-type: none;
+    }
+
     #app {
       width: 100%;
       height: 500px;
@@ -39,7 +43,7 @@
       height: 80px;
       float: left;
       font-size: 30px;
-      background-color: #fafafa;
+      background-color: #ffffff;
       border: none;
       outline: none;
     }
@@ -55,28 +59,31 @@
       margin-left: 20px;
     }
 
-    .xia p {
+    .xia button {
       color: #d5d3d3;
       font-size: 30px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 12px;
+      border: none;
+      background-color: #ffffff;
+      font-size: 40px;
       /* display: none; */
     }
 
     .buw {
       width: 700px;
-      height: 100px;
+      height: 120vm;
       margin: auto;
       margin-top: 2px;
       background-color: #ead7d7;
-      box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2);
+      /* box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2); */
     }
 
     .bnx {
       width: 700px;
-      height: 70px;
       float: left;
-      /* background-color: aqua; */
+      background-color: rgb(251, 251, 251);
+      border-top: none;
     }
 
     .fuxuan {
@@ -98,29 +105,50 @@
       margin: 19px;
       float: left;
     }
+
     .check:checked {
-      background-color: #f1fd46;
+      background-color: #00ffea;
       border-color: #333;
     }
+
     .che:checked::before {
       display: block;
       text-align: center;
       line-height: 20px;
       color: #fff;
     }
+
     .name {
-      width: 560px;
+      width: 700px;
       height: 70px;
       float: left;
-      border-bottom:1px black solid ;
+      border-bottom: 1px rgb(95, 95, 95) solid;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     }
+
+    .name label {
+      font-size: 25px;
+      line-height: 65px;
+    }
+
     .shan {
       width: 70px;
       height: 70px;
+      float: right;
       /* background-color: #ffa9a9; */
       position: relative;
       display: inline-block;
     }
+
+    .shan button {
+      width: 70px;
+      height: 70px;
+      border: none;
+      font-size: 30px;
+      float: right;
+      background-color: #ffffff;
+    }
+
     .cha {
       float: right;
       width: 70px;
@@ -129,58 +157,157 @@
       display: none;
       position: absolute;
     }
+
     .cha p {
       font-size: 30px;
       margin-top: 12px;
     }
+
     .shan:hover .cha {
       display: block;
+    }
+
+    .eee {
+      text-decoration: line-through;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .shaixuan {
+      width: 700px;
+      /* height: 1140px; */
+      background-color: #00ffea;
+      margin: auto;
+    }
+
+    .leib {
+      width: 700px;
+      height: 50px;
+      background-color: #ffffff;
+      float: left;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .leib span {
+      color: gray;
+      font-size: 20px;
+      line-height: 50px;
+      float: left;
+      margin-left: 20px;
+    }
+
+    .fl li {
+      float: left;
+      color: gray;
+      font-size: 20px;
+      line-height: 50px;
+      margin: 0 -35px 0 55px;
+    }
+
+    .leib button {
+      background-color: #ffffff;
+      border: none;
+      float: right;
+      width: 200px;
+      height: 50px;
+      color: gray;
+      font-size: 20px;
     }
   </style>
 
   <body>
     <div id="app">
       <h1>todos</h1>
-      <div class="bix">
-        <div class="xia">
-          <p>∨</p>
+      <div class="shaixuan">
+        <div class="bix">
+          <div class="xia">
+            <button>∨</button>
+          </div>
+          <input
+            type="text"
+            class="shuru"
+            placeholder="What needs to be done?"
+            @keyup.enter="addMemo"
+            v-model="newMemoText"
+          />
         </div>
-        <input
-          type="text"
-          class="shuru"
-          placeholder="What needs to be done?"
-          @keyup.huiche="showInfo"
-        />
-      </div>
-      <!-- 大添加盒 -->
-      <div class="buw">
-        <!-- 添加盒 -->
-        <div class="bnx">
-          <!-- 复选 -->
-          <div class="fuxuan">
-            <input type="checkbox" class="check" />
+        <!-- 大添加盒 -->
+        <div class="buw">
+          <!-- 添加盒 -->
+          <div class="bnx">
+            <!-- 添加 -->
+            <div class="name" v-for="(memo ,index) in memos" :key="memo.id">
+              <!-- 复选 -->
+              <div class="fuxuan">
+                <input
+                  type="checkbox"
+                  class="check"
+                  @change="check(index)"
+                  v-model="memo.state"
+                />
+              </div>
+              <label :class="memo.state?'eee':''">{{ memo.text }}</label>
+              <!-- 删除 -->
+              <div class="shan">
+                <div class="cha">
+                  <button @click="deleteMemo(memo.id)">×</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- 添加 -->
-          <div class="name" v-for="(item,index) in items" :key="item.id">
-           {{item.name}}
-          </div>
-          <!-- 删除 -->
-          <div class="shan">
-            <div class="cha"><p>×</p></div>
-          </div>
+        </div>
+        <div class="leib">
+          <span><strong>{{figure}}</strong> items left </span>
+          <ul class="fl">
+            <li><a href="">ALL</a></li>
+            <li><a href="">Active</a></li>
+            <li><a href="">Completet</a></li>
+          </ul>
+          <button><a href="">Clear completed</a></button>
         </div>
       </div>
     </div>
     <script>
-      Vue.config.keyCodes.huiche = 13;
-      var vm = new Vue({
+      new Vue({
         el: "#app",
-        data: {
-
+        data() {
+          return {
+            memos: [],
+            newMemoText: "",
+            figure: 0,
+          };
         },
         methods: {
-          showInfo(event) {
-            console.log(event.target.value);
+          // 回车添加
+          addMemo() {
+            if (this.newMemoText) {
+              let newMemo = {
+                id: Date.now(),
+                text: this.newMemoText,
+                state: false,
+              };
+              //   将newMemo添加到memos数组中
+              this.memos.push(newMemo);
+              //   清空数组
+              this.newMemoText = "";
+              // 显示有几个
+              this.figure = this.memos.length;
+            }
+          },
+          //   删除
+          deleteMemo(id) {
+            this.memos = this.memos.filter((memo) => memo.id !== id);
+            // 待处理
+            localStorage.setItem(
+              "mem",
+              (JSON.str = this.figure = this.memo.length)
+            );
+          },
+          // 点击减少的
+          check(index) {
+            let y = this.memos.filter((item) => {
+              return item.state == false;
+            });
+            this.figure = y.length;
           },
         },
       });
