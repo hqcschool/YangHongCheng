@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>抽奖</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .box {
+      width: 100%;
+      height: 1100px;
+      float: left;
+      background-color: #3a72fa;
+    }
+
+    .bux {
+      width: 618px;
+      height: 660px;
+      background-color: chartreuse;
+      margin: auto;
+      margin-top: 150px;
+      border-radius: 30px;
+      background: url(./k1.png);
+    }
+
+    .jiugg {
+      width: 160px;
+      height: 160px;
+      float: left;
+      background-color: aliceblue;
+      border-radius: 10px;
+      margin: 13.8px;
+      box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .jiuggq {
+      width: 160px;
+      height: 160px;
+      float: left;
+      background-color: #ff3a59;
+      border-radius: 10px;
+      margin: 13.8px;
+      box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .vt {
+      width: 563px;
+      height: 584px;
+      /* background-color: aqua; */
+      border-radius: 15px;
+      float: left;
+      margin-left: 27px;
+      margin-top: 29px;
+    }
+
+    .cj {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      font-size: 60px;
+      margin: 15px;
+    }
+
+    .xh {
+      text-align: center;
+      color: aliceblue;
+      font-size: 20px;
+    }
+
+    .psp {
+      font-size: 20px;
+      color: #708abf;
+      margin: 0 40px 0 40px;
+    }
+
+    .image {
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      margin-top: 15px;
+      margin-left: 25px;
+    }
+
+    .fq {
+      float: left;
+    }
+  </style>
+
+  <body>
+    <div class="box" id="app">
+      <div class="bux">
+        <div class="vt">
+          <ul>
+            <li
+              v-for="(item,index) in list.slice(0,4)"
+              :key="item.id"
+              class="jiugg"
+              :style="{ backgroundColor: item.status ? '#ff3a59' : '' }"
+            >
+              <div><img :src="item.image" class="image" /></div>
+              <div class="psp">{{item.img1}}</div>
+            </li>
+            <li class="jiuggq">
+              <p class="cj">
+                <b @click="randomStatus">抽奖</b>
+              </p>
+              <p class="xh">消耗10积分</p>
+            </li>
+            <li
+              v-for="(item,index) in list.slice(4,8)"
+              :key="item.id"
+              class="jiugg"
+              :style="{ backgroundColor: item.status ? '#ff3a59' : '' }"
+            >
+              <div><img :src="item.image" class="image" /></div>
+              <div class="psp">{{item.img1}}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data: {
+          newItem: {},
+          list: [
+            {
+              id: "1",
+              image: "./j1.png",
+              img1: "谢谢参与",
+              status: false,
+            },
+            {
+              id: "2",
+              image: "./j2.png",
+              img1: "美女一个",
+              status: false,
+            },
+            {
+              id: "3",
+              image: "./j1.png",
+              img1: "宝马一辆",
+              status: false,
+            },
+            {
+              id: "4",
+              image: "./j2 (1).png",
+              img1: "鲜花一篮",
+              status: false,
+            },
+            {
+              id: "5",
+              image: "./j2 (1).png",
+              img1: "单车一辆",
+              status: false,
+            },
+            {
+              id: "6",
+              image: "./j1.png",
+              img1: "靓号一个",
+              status: false,
+            },
+            {
+              id: "7",
+              image: "./j2 (1).png",
+              img1: "500红包",
+              status: false,
+            },
+            {
+              id: "8",
+              image: "./j1.png",
+              img1: "鸡蛋一篮",
+              status: false,
+            },
+          ],
+        },
+        methods: {
+          // 随机变色
+          randomStatus() {
+            const index = Math.floor(Math.random() * this.list.length);
+            this.list.forEach((item, i) => {
+              item.status = i === index;
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

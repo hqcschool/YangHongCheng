@@ -16,6 +16,10 @@
       list-style-type: none;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     #app {
       width: 100%;
       height: 500px;
@@ -195,12 +199,20 @@
       margin-left: 20px;
     }
 
+    .leib a {
+      color: gray;
+    }
+
     .fl li {
       float: left;
       color: gray;
       font-size: 20px;
       line-height: 50px;
       margin: 0 -35px 0 55px;
+    }
+
+    .fl a {
+      color: gray;
     }
 
     .leib button {
@@ -258,22 +270,44 @@
         <div class="leib">
           <span><strong>{{figure}}</strong> items left </span>
           <ul class="fl">
-            <li><a href="">ALL</a></li>
-            <li><a href="">Active</a></li>
-            <li><a href="">Completet</a></li>
+            <li>
+              <a
+                href="#"
+                :class="thisActive=='all'?'active':''"
+                @click.prevent="thisActive='all'"
+                >ALL</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                :class="thisActive=='active'?'active':''"
+                @click.prevent="thisActive='active'"
+                >Active</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                :class="thisActive=='completed'?'active':''"
+                @click.prevent="thisActive='completed'"
+                >Completet</a
+              >
+            </li>
           </ul>
-          <button><a href="">Clear completed</a></button>
+          <button><a href="#" v-show="isShowClear" @click.prevent="ClearCompleted">Clear completed</a></button>
         </div>
       </div>
     </div>
     <script>
-      new Vue({
+      const vm = new Vue({
         el: "#app",
         data() {
           return {
             memos: [],
             newMemoText: "",
             figure: 0,
+            thisActive: "all",
           };
         },
         methods: {
@@ -309,6 +343,14 @@
             });
             this.figure = y.length;
           },
+          // 显示删除全部
+          isShowClear(){
+            return this.memos.some((memo)=>memo.staus)
+          },
+          // 清除已完成
+          ClearCompleted(){
+            this.memos = this.memos.filter((item)=> !item.staus)
+          }
         },
       });
     </script>
