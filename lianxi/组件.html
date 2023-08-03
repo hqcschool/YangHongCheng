@@ -63,7 +63,7 @@
 
     <div id="app"></div>
     <script>
-        // 1
+      // 1
       const utte = Vue.extend({
         name: "utte",
         template: `
@@ -76,7 +76,7 @@
           return { name: "misy", enxt: "男" };
         },
       });
-    //   2
+      //   2
       const wh = Vue.extend({
         name: "wh",
         template: `
@@ -91,14 +91,14 @@
         },
         components: { utte },
       });
-    //   3
+      //   3
       const biu = Vue.extend({
         template: `<h2>{{vwws}}</h2>`,
         data() {
           return { vwws: "今天星期四V我50" };
         },
       });
-    //   4
+      //   4
       const pap = Vue.extend({
         template: `
             <div>
@@ -107,9 +107,9 @@
                 <biu></biu>
             </div>
             `,
-        components: { utte, wh, biu},
+        components: { utte, wh, biu },
       });
-    //   2345
+      //   2345
       new Vue({
         el: "#app",
         template: `<pap></pap>`,
