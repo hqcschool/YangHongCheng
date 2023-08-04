@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../Vue/vue.js"></script>
+  <link rel="stylesheet" href="../../../../../GITLIANX/mis/work/common/swiper/swiper-bundle.css">
+  <script src="../../../../../GITLIANX/mis/work/common/swiper/swiper-bundle.js"></script>
+  <body>
+    <template>
+      <div id="app">
+        <transition name="fade">
+          <img
+            :src="currentImage.src"
+            :alt="currentImage.alt"
+            :key="currentImage.id"
+          />
+        </transition>
+        <div class="thumbnails">
+          <div
+            v-for="image in images"
+            :key="image.id"
+            :class="{ active: image.id === currentImage.id }"
+            @click="changeImage(image)"
+          >
+            <img :src="image.src" :alt="image.alt" />
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script>
+      let vm = new Vue({
+        data() {
+          return {
+            images: [
+              {
+                id: 1,
+                src: "./作业/feijian.jpg",
+                alt: "Image 1",
+              },
+              {
+                id: 2,
+                src: "./作业/wallhaven-yxxm6l.jpg",
+                alt: "Image 2",
+              },
+              {
+                id: 3,
+                src: "./作业/feijian.jpg",
+                alt: "Image 3",
+              },
+            ],
+            currentImage: null,
+            intervalId: null,
+          };
+        },
+        mounted() {
+          this.startSlideshow();
+        },
+        methods: {
+          startSlideshow() {
+            this.currentImage = this.images[0]; // 设置初始图片
+            this.intervalId = setInterval(this.nextImage, 2000); // 每2秒切换到下一张图片
+          },
+          stopSlideshow() {
+            clearInterval(this.intervalId);
+          },
+          nextImage() {
+            const currentIndex = this.images.findIndex(
+              (image) => image.id === this.currentImage.id
+            );
+            const nextIndex = (currentIndex + 1) % this.images.length;
+            this.currentImage = this.images[nextIndex];
+          },
+          changeImage(image) {
+            this.currentImage = image;
+            this.stopSlideshow();
+          },
+        },
+      });
+    </script>
+
+    <style>
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
+
+      .fade-enter,
+      .fade-leave-to {
+        opacity: 0;
+      }
+
+      .thumbnails {
+        display: flex;
+      }
+
+      .thumbnails img {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border: 2px solid transparent;
+      }
+
+      .thumbnails .active img {
+        border-color: #ff0000;
+      }
+    </style>
+  </body>
+</html>

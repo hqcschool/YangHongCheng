@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../Vue/vue.js"></script>
+    <link rel="stylesheet" href="./阅读.css" />
+  </head>
+  <script>
+    (function () {
+      var styleNode = document.createElement("style");
+      var w = document.documentElement.clientWidth / 12;
+      styleNode.innerHTML = "html{font-size:" + w + "px!important}";
+      document.head.appendChild(styleNode);
+    })();
+  </script>
+  <body>
+    <div class="box" id="app">
+        <yuedu></yuedu>
+        <inputa></inputa>
+        <div class="fenl">
+            <div class="fenls">{{tuijw}}</div>
+            <div class="fenls">{{fenlei}}</div>
+            <div class="fenls">{{paih}}</div>
+            <div class="fenls">{{wyys}}</div>
+            <div class="fenls">{{zxsk}}</div>
+        </div>
+    </div>
+    <script>
+      const yuedu = Vue.extend({
+        template: `
+        <div class="biaot">
+            <h4>{{bt}}</h4>
+        </div>
+            `,
+        data() {
+          return {
+            bt: "微信读书",
+          };
+        },
+      });
+      const inputa = Vue.extend({
+        template:`
+        <div class="input">
+            <div class="kong">Ô</div>
+            <input type="text" placeholder="搜索" class="namr" >
+        </div>
+        `,
+      })
+    //   const fenl = Vue.extend({
+    //     template:`
+        
+    //     `
+    //   })
+      new Vue({
+        el: "#app",
+        data: {
+            tuijw:"推荐",
+            fenlei:"分类",
+            paih:"排行",
+            wyys:"文学艺术"
+        },
+        components: {
+          yuedu,
+          inputa,
+        },
+      });
+    </script>
+  </body>
+</html>
