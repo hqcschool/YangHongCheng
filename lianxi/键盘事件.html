@@ -1,58 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<script type="text/javascript" src="../我的/Vue/vue.js"></script>
-<body>
-    <div id="app">
-      <h2>备忘录</h2>
-      <div class="memo-list">
-        <div v-for="memo in memos" :key="memo.id" class="memo-item">
-          <span>{{ memo.text }}</span>
-          <button @click="deleteMemo(memo.id)">删除</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../我的/Vue/vue.js"></script>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        overflow-y: scroll; /* 设置垂直滚动 */
+      }
+      
+      .content {
+        height: 500px;
+      }
+      </style>
+      
+      <div class="box">
+        <div class="content">
+          这里放置可滚动的内容
         </div>
       </div>
-  
-      <div class="add-memo">
-        <input type="text" v-model="newMemoText" placeholder="请输入备忘录内容">
-        <button @click="addMemo">添加</button>
-      </div>
-    </div>
-  
-  <script>
-  new Vue({
-    el:"#app",
-    data() {
-      return {
-        memos: [],
-        newMemoText: ""
-      };
-    },
-    methods: {
-      addMemo() {
-        if (this.newMemoText) {
-          const newMemo = {
-            id: Date.now(),
-            text: this.newMemoText
-          };
-          this.memos.push(newMemo);
-          this.newMemoText = "";
-        }
-      },
-      deleteMemo(id) {
-        this.memos = this.memos.filter(memo => memo.id !== id);
-      }
-    }
-  });
-  </script>
-  
-  <style>
-  .memo-item {
-    margin-bottom: 10px;
-  }
-  </style>
-</body>
+  </body>
 </html>
