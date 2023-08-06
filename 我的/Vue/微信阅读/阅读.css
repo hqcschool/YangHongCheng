@@ -145,6 +145,7 @@ a {
 }
 .tab-box {
   width: 100%;
+  height: 26.24rem;
   overflow-y: scroll;
   display: none;
   background-color: #f1f1f1;
@@ -213,7 +214,7 @@ a {
 .flei {
   width: 95%;
   height: 5.44rem;
-  background-color: #c1c1c1;
+  background-color: #e9e9e9;
   border-radius: 0.64rem;
   margin: auto;
   margin-top: 0.32rem;
@@ -231,11 +232,101 @@ a {
   margin-left: 0.64rem;
 }
 .bad,
-.jianl,
-.ds {
+.ds,
+.jianl {
   font-size: 0.448rem;
   float: left;
   color: #2e2e2e;
-  margin-top: 0.16rem;
   margin-left: 0.64rem;
+}
+.bad {
+  margin-top: 0.48rem;
+}
+.jianl {
+  margin-top: 0.256rem;
+}
+.ds {
+  margin-top: 0.032rem;
+}
+.bang,
+.bd {
+  width: 9.28rem;
+  height: 1.76rem;
+}
+.wsbang {
+  width: 125%;
+  margin: auto;
+  height: 3.84rem;
+  margin: 0.32rem;
+}
+.leftimg {
+  width: 3.2rem;
+  height: 3.84rem;
+  float: left;
+  background-color: aqua;
+}
+.names {
+  width: 7.36rem;
+  height: 0.96rem;
+  float: left;
+  margin: 0.32rem;
+  font-size: 0.64rem;
+}
+.ming {
+  width: 3.84rem;
+  height: 0.96rem;
+  float: left;
+  font-size: 0.48rem;
+  color: gray;
+  margin: 0.32rem;
+}
+.wxys {
+  width: 95%;
+  height: 4.8rem;
+  margin: auto;
+}
+.ide {
+  width: 0.64rem;
+  height: 0.64rem;
+  float: left;
+  margin: 2.24rem 0rem 0rem 0.32rem;
+  text-align: center;
+  font-size: 0.48rem;
+}
+.phimg {
+  width: 3.84rem;
+  height: 4.8rem;
+  float: left;
+}
+.ynv {
+  width: 4.608rem;
+  height: 0.96rem;
+  float: left;
+  font-size: 0.64rem;
+  margin-top: 0.64rem;
+}
+.renshu {
+  width: 1.92rem;
+  height: 0.64rem;
+  float: right;
+  font-size: 0.48rem;
+  text-align: center;
+  background-color: #d9d9d9;
+}
+.mingzi {
+  width: 4.608rem;
+  height: 0.96rem;
+  float: left;
+  font-size: 0.64rem;
+  font-family: 宋体;
+}
+.tujain {
+  width: 4.608rem;
+  height: 0.96rem;
+  float: left;
+  font-size: 0.512rem;
+  color: gray;
+}
+.iconr {
+  float: left;
 }

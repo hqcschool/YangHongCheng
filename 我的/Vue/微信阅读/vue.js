@@ -84,13 +84,13 @@ new Vue({
     paih: "排行",
     wyys: "文学艺术",
     zxsk: "哲学社科",
-    newItem:{
-        imglog:"",
-        calz:"",
-        mby:"",
-        douz:""
+    newItem: {
+      imglog: "",
+      calz: "",
+      mby: "",
+      douz: "",
     },
-list: [
+    list: [
       {
         imglog: "./shu2.jpg",
         calz: "长安的荔枝",
@@ -98,71 +98,187 @@ list: [
         douz: "大家都在读",
       },
       {
-        imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
+        imglog: "./dt.jpg",
+        calz: "包利法夫人",
+        mby: "福楼拜 | 推荐值 86.8%",
         douz: "大家都在读",
       },
       {
         imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
+        calz: "活着",
+        mby: "余华 | 推荐值 91.9%",
+        douz: "大家都在读",
+      },
+      {
+        imglog: "./sh.webp",
+        calz: "长相思",
+        mby: "桐华 | 推荐值 88.4%",
+        douz: "大家都在读",
+      },
+      {
+        imglog: "./shu1.jpg",
+        calz: "大唐兴亡三百年（全集）",
+        mby: "王觉仁 | 推荐值 80.4%",
+        douz: "大家都在读",
+      },
+      {
+        imglog: "./sh.webp",
+        calz: "法医秦明：白卷",
+        mby: "法医秦明 | 推荐值 89.7%",
         douz: "大家都在读",
       },
       {
         imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
-        douz: "大家都在读",
-      },
-      {
-        imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
-        douz: "大家都在读",
-      },
-      {
-        imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
-        douz: "大家都在读",
-      },
-      {
-        imglog: "./shu2.jpg",
-        calz: "长安的荔枝",
-        mby: "马伯庸 | 推荐值 95.5%",
+        calz: "我与地坛",
+        mby: "史铁生 | 推荐值 91.1%",
         douz: "大家都在读",
       },
     ],
-    yu:[
-        {
-            imgloga:"./shu2.jpg",
-            jpxs:"精品小说",
-            cxs:"1. 长相思（杨紫 张晚意  邓为）",
-            jial:"2. 剑来",
-            disan:"3. 三体（全集）"
-        },
-        {
-            imgloga:"./shu2.jpg",
-            jpxs:"精品小说",
-            cxs:"1. 长相思（杨紫 张晚意  邓为）",
-            jial:"2. 剑来",
-            disan:"3. 三体（全集）"
-        },
-        {
-            imgloga:"./shu2.jpg",
-            jpxs:"精品小说",
-            cxs:"1. 长相思（杨紫 张晚意  邓为）",
-            jial:"2. 剑来",
-            disan:"3. 三体（全集）"
-        },
-        {
-            imgloga:"./shu2.jpg",
-            jpxs:"精品小说",
-            cxs:"1. 长相思（杨紫 张晚意  邓为）",
-            jial:"2. 剑来",
-            disan:"3. 三体（全集）"
-        }
+    yu: [
+      {
+        imgloga: "./shu2.jpg",
+        jpxs: "精品小说",
+        cxs: "1. 长相思（杨紫 张晚意  邓为）",
+        jial: "2. 剑来",
+        disan: "3. 三体（全集）",
+      },
+      {
+        imgloga: "./shu1.jpg",
+        jpxs: "历史",
+        cxs: "1. 明朝那些事（全集）",
+        jial: "2. 长安的荔枝",
+        disan: "3. 翦商",
+      },
+      {
+        imgloga: "./dt.jpg",
+        jpxs: "文学",
+        cxs: "1. 我与地坛（史铁生）",
+        jial: "2. 红楼梦",
+        disan: "3. 封神演义（中国古典）",
+      },
+      {
+        imgloga: "./sh.webp",
+        jpxs: "艺术（天然）",
+        cxs: "1. 生活蒙太奇",
+        jial: "2. 故事：材质，结构",
+        disan: "3. 新摄影笔记",
+      },
+    ],
+    pahang:[
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/67/YueWen_36235932/t6_YueWen_36235932.jpg",
+        named:"1.叫人拍案叫绝的中国史",
+        zze:"渤海小吏"
+      },
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/98/cpPlatform_3300025251/t6_cpPlatform_3300025251.jpg",
+        named:"2.生活既禅。笑看平凡",
+        zze:"林帝浣"
+      },
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/25/cpplatform_8numzl8erzinxvfsk3p9jv/t6_cpplatform_8numzl8erzinxvfsk3p9jv1685508354.jpg",
+        named:"3.资本的秘密",
+        zze:"赫尔南多.德.索托"
+      },
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/67/YueWen_36235932/t6_YueWen_36235932.jpg",
+        named:"1.叫人拍案叫绝的中国史",
+        zze:"渤海小吏"
+      },
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/98/cpPlatform_3300025251/t6_cpPlatform_3300025251.jpg",
+        named:"2.生活既禅。笑看平凡",
+        zze:"林帝浣"
+      },
+      {
+        minge:"https://weread-1258476243.file.myqcloud.com/weread/cover/25/cpplatform_8numzl8erzinxvfsk3p9jv/t6_cpplatform_8numzl8erzinxvfsk3p9jv1685508354.jpg",
+        named:"3.资本的秘密",
+        zze:"赫尔南多.德.索托"
+      },
+    ],
+    pinq:[
+      {
+        pex:"1",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/94/cpplatform_akrjnymgoxljkqszganvbx/t6_cpplatform_akrjnymgoxljkqszganvbx1682248200.jpg",
+        seis:"厌女（增订本）",
+        siz1:"上野千鹤子",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
+      {
+        pex:"2",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/40/3300012940/t6_3300012940.jpg",
+        seis:"法治的细节",
+        siz1:"罗翔",
+        siz2:"推荐值 93.9%",
+        ren:"3560"
+      },
+      {
+        pex:"3",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/53/YueWen_651366/t6_YueWen_651366.jpg",
+        seis:"乡土中国",
+        siz1:"费孝通",
+        siz2:"推荐值 85.5%",
+        ren:"3560"
+      },
+      {
+        pex:"4",
+        shu:"https://wfqqreader-1252317822.image.myqcloud.com/cover/833/855833/t6_855833.jpg",
+        seis:"娱乐至死",
+        siz1:"尼尔.波兹曼",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
+      {
+        pex:"5",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/85/YueWen_36561820/t6_YueWen_36561820.jpg",
+        seis:"中国古代文化",
+        siz1:"王丽",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
+    ],
+    pinq2:[
+      {
+        pex:"1",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/0/cpplatform_vd9z1ybdurasu4467rnp87/t6_cpplatform_vd9z1ybdurasu4467rnp871686812083.jpg",
+        seis:"厌女（增订本）",
+        siz1:"上野千鹤子",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
+      {
+        pex:"2",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/22/3300011622/t6_3300011622.jpg",
+        seis:"法治的细节",
+        siz1:"罗翔",
+        siz2:"推荐值 93.9%",
+        ren:"3560"
+      },
+      {
+        pex:"3",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/27/cpplatform_v2rudgf9sle9n81a1vt2cd/t6_cpplatform_v2rudgf9sle9n81a1vt2cd1684485862.jpg",
+        seis:"乡土中国",
+        siz1:"费孝通",
+        siz2:"推荐值 85.5%",
+        ren:"3560"
+      },
+      {
+        pex:"4",
+        shu:"https://wfqqreader-1252317822.image.myqcloud.com/cover/833/855833/t6_855833.jpg",
+        seis:"娱乐至死",
+        siz1:"尼尔.波兹曼",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
+      {
+        pex:"5",
+        shu:"https://weread-1258476243.file.myqcloud.com/weread/cover/85/YueWen_36561820/t6_YueWen_36561820.jpg",
+        seis:"中国古代文化",
+        siz1:"王丽",
+        siz2:"推荐值 91.1%",
+        ren:"3560"
+      },
     ]
   },
   components: {
